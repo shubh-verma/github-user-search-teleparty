@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Table from "../components/table";
 import apiCall from "../services/index";
+import "../utills/design.css";
 
 const Search = () => {
   const [data, setData] = useState([]);
@@ -14,9 +15,9 @@ const Search = () => {
 
   return (
     <main>
-      <div>
-        <h1>Search User by Name</h1>
-        <div>
+      <div class="rect">
+        <h1 id="heading">Enter Name to Search</h1>
+        <div id="search_bar">
           <input
             type="text"
             placeholder="Type a Name"
