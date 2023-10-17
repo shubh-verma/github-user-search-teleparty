@@ -7,9 +7,9 @@ const Search = () => {
   const [data, setData] = useState([]);
   const [input, setInput] = useState([]);
 
-  const saveSearch = async () => {
-    let data = await apiCall(input);
-    console.log(data);
+  const saveSearch = async (value) => {
+    let data = await apiCall(value);
+    // console.log(data);
     data = data?.items;
     setData(data);
   };
@@ -25,7 +25,7 @@ const Search = () => {
             value={input}
             onChange={(e) => {
               setInput(e.target.value);
-              saveSearch();
+              saveSearch(e.target.value);
             }}
           />
         </div>
