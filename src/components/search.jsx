@@ -6,12 +6,27 @@ import "../utills/design.css";
 const Search = () => {
   const [data, setData] = useState([]);
   const [input, setInput] = useState([]);
+  const [errorLog, setErrorLog] = useState(false);
+  const popUp = {
+    border: "black 2px solid",
+    maxWidth: "500px",
+    marginLeft: "auto",
+    marginRight: "auto",
+    color: "red",
+    backgroundColor: "lightgray",
+  };
 
   const saveSearch = async (value) => {
     let data = await apiCall(value);
-    // console.log(data);
-    data = data?.items;
-    setData(data);
+
+    if (data && data.items) {
+      data = data?.items;
+      setData(data);
+    } else if (data && data.message) {
+      setErrorLog(true);
+    } else {
+      setData(data);
+    }
   };
 
   return (
@@ -28,6 +43,15 @@ const Search = () => {
               saveSearch(e.target.value);
             }}
           />
+        </div>
+      </div>
+      <div style={{ display: errorLog ? "inline" : "none" }}>
+        <div style={popUp}>
+          <p>
+            You have exceed your per minute search-request. <br />
+            GitHub provides only 10 Search-request per minute. Wait for 1 minute
+            and start from where you left to complete your search
+          </p>
         </div>
       </div>
       <Table data={data} />
