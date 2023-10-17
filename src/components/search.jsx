@@ -9,13 +9,14 @@ const Search = () => {
 
   const saveSearch = async () => {
     let data = await apiCall(input);
+    console.log(data);
     data = data?.items;
     setData(data);
   };
 
   return (
     <main>
-      <div class="rect">
+      <div className="rect">
         <h1 id="heading">Enter Name to Search</h1>
         <div id="search_bar">
           <input

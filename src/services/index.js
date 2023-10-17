@@ -6,7 +6,7 @@ async function apiCall(input) {
 
   try {
     const response = await axios.get(queryURL, { auth: token });
-    console.log(response);
+    // console.log(response);
     return response?.data;
   } catch (error) {
     console.error(error);
